@@ -1,9 +1,6 @@
 import axios from "axios";
 import { wrapper } from "axios-cookiejar-support";
 import fakeUa from "fake-useragent";
-import { CookieJar } from "tough-cookie";
-
-const jar = new CookieJar();
 
 const randomUA = fakeUa()
 const instance = axios.create({
