@@ -4,8 +4,8 @@
 ![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
 ![TypeScript](https://img.shields.io/badge/typescript-6.0-blue)
 ![MCP SDK](https://img.shields.io/badge/MCP%20SDK-1.29-purple)
-[![Lint](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/ci.yml/badge.svg?event=push&label=lint)](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/ci.yml)
-[![Test](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/ci.yml/badge.svg?event=push&label=test)](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/ci.yml)
+[![Lint](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/lint.yml/badge.svg)](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/lint.yml)
+[![Test](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/test.yml/badge.svg)](https://github.com/qxbao/qldt-hanu-mcp/actions/workflows/test.yml)
 
 [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for **QLDT HANU** — the student management system of Hanoi University ([qldt.hanu.edu.vn](https://qldt.hanu.edu.vn)). Enables your AI assistants to authenticate and directly interact with the university portal.
 
