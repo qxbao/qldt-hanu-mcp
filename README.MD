@@ -5,7 +5,7 @@
 ![TypeScript](https://img.shields.io/badge/typescript-6.0-blue)
 ![MCP SDK](https://img.shields.io/badge/MCP%20SDK-1.29-purple)
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for **QLDT HANU** — the student management system of Hanoi University ([qldt.hanu.edu.vn](https://qldt.hanu.edu.vn)). Enables AI assistants to authenticate and retrieve student information directly from the university portal.
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for **QLDT HANU** — the student management system of Hanoi University ([qldt.hanu.edu.vn](https://qldt.hanu.edu.vn)). Enables your AI assistants to authenticate and directly interact with the university portal.
 
 ## 🚀 Quick Start
 
@@ -103,6 +103,8 @@ Ask your AI assistant to:
 - **"Login to QLDT for me with: xxxxxxx - [PASSWORD]"**
 - **"Check my info on QLDT"**
 - **"Check token readiness"**
+- **"What is my schedule for semester 1 of 2023?"**
+- **"Check my tuition fee status"**
 
 ## 🛠️ Available Tools
 
@@ -111,6 +113,8 @@ Ask your AI assistant to:
 | `login` | Authenticate with QLDT using student ID & password | ❌ |
 | `get_session_status` | Check if the current session is authenticated | ❌ |
 | `get_student_info` | Retrieve full student profile information | ✅ |
+| `get_student_schedule` | Retrieve student schedule for a given semester and year | ✅ |
+| `get_all_semester_tuition_fee` | Retrieve all semester tuition fee statuses | ✅ |
 
 ### Tool Details
 
@@ -136,6 +140,19 @@ Fetch the authenticated student's profile. Returns data in Vietnamese, including
 - Contact info (phone, email, address)
 - Advisor info (name, phone, email)
 - Enrollment status
+
+#### `get_student_schedule`
+
+Fetch the student's schedule for a specific academic year and semester. Returns data in Vietnamese.
+
+| Parameter | Type | Required | Description |
+|-----------|------|:---:|-------------|
+| `year` | `string` | ✅ | Start year of the academic year (e.g., "2023" for 2023-2024) |
+| `semester` | `string` | ✅ | Semester of the schedule (e.g., "1", "2") |
+
+#### `get_all_semester_tuition_fee`
+
+Fetch the student's tuition fee statuses across all semesters. Returns data in Vietnamese. No parameters required.
 
 ## 🧑‍💻 Development
 
@@ -183,10 +200,9 @@ pnpm run fix
 
 ## 📋 Roadmap
 
-- [ ] Course schedule retrieval
+- [x] Course schedule retrieval
 - [ ] Grade / transcript lookup
-- [ ] Tuition fee status
-- [ ] Exam schedule
+- [x] Tuition fee status
 - [ ] Course registration
 
 ## 🤝 Contributing
