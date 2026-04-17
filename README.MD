@@ -105,6 +105,7 @@ Ask your AI assistant to:
 - **"Check token readiness"**
 - **"What is my schedule for semester 1 of 2023?"**
 - **"Check my tuition fee status"**
+- **"Check my academic grades"**
 
 ## 🛠️ Available Tools
 
@@ -115,6 +116,7 @@ Ask your AI assistant to:
 | `get_student_info` | Retrieve full student profile information | ✅ |
 | `get_student_schedule` | Retrieve student schedule for a given semester and year | ✅ |
 | `get_all_semester_tuition_fee` | Retrieve all semester tuition fee statuses | ✅ |
+| `get_all_semester_grades` | Retrieve all semester grades and transcript | ✅ |
 
 ### Tool Details
 
@@ -153,6 +155,10 @@ Fetch the student's schedule for a specific academic year and semester. Returns 
 #### `get_all_semester_tuition_fee`
 
 Fetch the student's tuition fee statuses across all semesters. Returns data in Vietnamese. No parameters required.
+
+#### `get_all_semester_grades`
+
+Fetch the student's academic grades and GPA across all semesters. Returns data in Vietnamese. No parameters required.
 
 ## 🧑‍💻 Development
 
@@ -201,7 +207,7 @@ pnpm run fix
 ## 📋 Roadmap
 
 - [x] Course schedule retrieval
-- [ ] Grade / transcript lookup
+- [x] Grade / transcript lookup
 - [x] Tuition fee status
 - [ ] Course registration
 

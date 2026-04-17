@@ -105,4 +105,36 @@ export const registerStudentTools = (server: McpServer) => {
       }
     },
   );
+
+  server.registerTool(
+    'get_all_semester_grades',
+    {
+      title: 'Get All Semester Grades',
+      description: 'Get all semester grades. MUST BE LOGGED IN FIRST',
+      inputSchema: z.object({}),
+    },
+    async () => {
+      try {
+        const grades = await StudentService.getGrades();
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `This is the full grades API Response, field names and content are in Vietnamese. Serve it on your own need:\n${JSON.stringify(grades, null, 2)}`,
+            },
+          ],
+        };
+      } catch (error: any) {
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Get grades failed with Exception: ${error.message}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    },
+  );
 };

@@ -122,3 +122,81 @@ type TuitionFeeInSemester = {
   ghi_chu: string;
   don_gia: string;
 };
+
+// Student Grades Section
+
+type GradesAPIObject = {
+  total_items: number;
+  total_pages: number;
+  is_kkbd: boolean;
+  ds_diem_hocky: SemesterGradeList[];
+  ds_field_an_cot_diem: any[];
+  hien_thi_khoa_thi: boolean;
+  hien_thi_cot_diem_tp: boolean;
+  an_chi_tiet_diem_tp: boolean;
+  hien_thi_cot_diem_k1: boolean;
+  hien_thi_cot_mhtt: boolean;
+  hien_thi_cot_stctt: boolean;
+  hien_thi_cot_diemtk10: boolean;
+  hien_thi_cot_diemtk4: boolean;
+  hien_thi_cot_diem_thi: boolean;
+  hien_thi_cot_mh_nganh: boolean;
+  hien_thi_cot_hk_chuyen_diem: boolean;
+  mesage_diemtk4: string;
+  mesage_diemtkc: string;
+  mesage_diemtk10: string;
+  mesage_diemk1: string;
+  ghi_chu_xem_diem: string;
+};
+
+type SemesterGradeList = {
+  loai_nganh: number;
+  hoc_ky: string;
+  ten_hoc_ky: string;
+  dtb_hk_he10: string;
+  dtb_hk_he4: string;
+  dtb_tich_luy_he_10: string;
+  dtb_tich_luy_he_4: string;
+  so_tin_chi_dat_hk: string;
+  so_tin_chi_dat_tich_luy: string;
+  diemrl_hk: string;
+  phan_loai_rl_hk: string;
+  phan_loai_rl_hk_eg: string;
+  hien_thi_tk_he_10: boolean;
+  hien_thi_tk_he_4: boolean;
+  xep_loai_tkb_hk: string;
+  xep_loai_tkb_hk_eg: string;
+  canh_cao_hoc_tap: string;
+  canh_cao_hoc_tap_eg: string;
+  ds_diem_mon_hoc: CourseGradeList[];
+};
+
+type CourseGradeList = {
+  chuyen_diem_ve_hoc_ky: string;
+  ma_mon: string;
+  ma_mon_tt: string;
+  nhom_to: string;
+  ten_mon: string;
+  ten_mon_eg?: string;
+  mon_hoc_nganh: boolean;
+  so_tin_chi: string;
+  diem_thi: string;
+  diem_giua_ky: string;
+  diem_tk: string;
+  diem_tk_so: string;
+  diem_tk_chu: string;
+  ket_qua: number;
+  hien_thi_ket_qua: boolean;
+  loai_nganh: number;
+  KhoaThi: number;
+  khong_tinh_diem_tbtl: number;
+  ly_do_khong_tinh_diem_tbtl: string;
+  ds_diem_thanh_phan: CourseComponentGrade[];
+};
+
+type CourseComponentGrade = {
+  ky_hieu: string;
+  ten_thanh_phan: string;
+  trong_so: string;
+  diem_thanh_phan: string;
+};

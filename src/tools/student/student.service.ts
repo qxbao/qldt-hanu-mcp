@@ -36,4 +36,13 @@ export class StudentService {
 
     return response.data;
   }
+
+  static async getGrades(): Promise<GradesAPIObject> {
+    const response = await httpClient.post(
+      'api/srm/w-locdsdiemsinhvien?hien_thi_mon_theo_hkdk=false',
+      {},
+    );
+
+    return response.data;
+  }
 }
