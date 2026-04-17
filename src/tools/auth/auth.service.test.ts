@@ -46,7 +46,7 @@ describe('AuthService', () => {
     expect(httpClient.get).toHaveBeenCalledTimes(1);
     expect(result).toBe('Login success');
 
-    expect(httpClient.defaults.headers.Authorization).toBe(
+    expect(httpClient.defaults.headers.common['Authorization']).toBe(
       'Bearer fake-token-123',
     );
   });
