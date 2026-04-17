@@ -105,7 +105,7 @@ type TuitionFeeAPIObject = {
   is_hvsg: boolean;
   is_show_don_gia: boolean;
   ds_hoc_phi_hoc_ky: TuitionFeeInSemester[];
-  ds_hoc_bong_mg: any[];
+  ds_hoc_bong_mg: unknown[];
 };
 
 type TuitionFeeInSemester = {
@@ -130,7 +130,7 @@ type GradesAPIObject = {
   total_pages: number;
   is_kkbd: boolean;
   ds_diem_hocky: SemesterGradeList[];
-  ds_field_an_cot_diem: any[];
+  ds_field_an_cot_diem: unknown[];
   hien_thi_khoa_thi: boolean;
   hien_thi_cot_diem_tp: boolean;
   an_chi_tiet_diem_tp: boolean;

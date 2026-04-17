@@ -1,7 +1,7 @@
 import {httpClient} from '../../client/http';
 import fs from 'fs';
 import {ACCESS_TOKEN_CACHE_TTL, SESSION_FILE} from '../../const/auth';
-import { LOGIN_API } from '../../const/api';
+import {LOGIN_API} from '../../const/api';
 
 export class AuthService {
   private static saveSession(token: string) {

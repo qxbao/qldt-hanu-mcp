@@ -21,12 +21,12 @@ export const registerStudentTools = (server: McpServer) => {
             },
           ],
         };
-      } catch (error: any) {
+      } catch (error: unknown) {
         return {
           content: [
             {
               type: 'text',
-              text: `Get student info failed with Exception: ${error.message}`,
+              text: `Get student info failed with Exception: ${(error as Error).message}`,
             },
           ],
           isError: true,
@@ -60,12 +60,12 @@ export const registerStudentTools = (server: McpServer) => {
             },
           ],
         };
-      } catch (error: any) {
+      } catch (error: unknown) {
         return {
           content: [
             {
               type: 'text',
-              text: `Get schedule failed with Exception: ${error.message}`,
+              text: `Get schedule failed with Exception: ${(error as Error).message}`,
             },
           ],
           isError: true,
@@ -92,12 +92,12 @@ export const registerStudentTools = (server: McpServer) => {
             },
           ],
         };
-      } catch (error: any) {
+      } catch (error: unknown) {
         return {
           content: [
             {
               type: 'text',
-              text: `Get tuition fee failed with Exception: ${error.message}`,
+              text: `Get tuition fee failed with Exception: ${(error as Error).message}`,
             },
           ],
           isError: true,
@@ -124,12 +124,12 @@ export const registerStudentTools = (server: McpServer) => {
             },
           ],
         };
-      } catch (error: any) {
+      } catch (error: unknown) {
         return {
           content: [
             {
               type: 'text',
-              text: `Get grades failed with Exception: ${error.message}`,
+              text: `Get grades failed with Exception: ${(error as Error).message}`,
             },
           ],
           isError: true,

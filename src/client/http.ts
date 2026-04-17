@@ -11,4 +11,5 @@ const instance = axios.create({
   },
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const httpClient = wrapper(instance as any);
