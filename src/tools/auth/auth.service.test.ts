@@ -1,21 +1,26 @@
 import {describe, test, expect, vi, beforeEach} from 'vitest';
 import {AuthService} from './auth.service';
 import {httpClient} from '../../client/http';
+import fs from 'fs';
 
 vi.mock('../../client/http', () => {
   return {
     httpClient: {
       get: vi.fn(),
       defaults: {
-        headers: {},
+        headers: {common: {}},
       },
     },
   };
 });
 
+vi.mock('fs');
+
 describe('AuthService', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.mocked(fs.existsSync).mockReturnValue(false);
+    vi.mocked(fs.writeFileSync).mockImplementation(() => {});
   });
 
   test('genCode - can generate JWT', () => {
@@ -25,11 +30,12 @@ describe('AuthService', () => {
   });
 
   test('login - can login success', async () => {
+    // CurrUser = base64(JSON.stringify({ access_token: 'fake-token-123' }))
+    const fakeToken = 'eyJhY2Nlc3NfdG9rZW4iOiJmYWtlLXRva2VuLTEyMyJ9';
     const mockResponse = {
       status: 302,
       headers: {
-        location:
-          'https://qldt.hanu.edu.vn/?CurrUser=eyJJRFVzZXIiOi03ODI3MzMyMTM3OTE&gopage=',
+        location: `https://qldt.hanu.edu.vn/?CurrUser=${fakeToken}&gopage=`,
       },
     };
 
@@ -41,7 +47,7 @@ describe('AuthService', () => {
     expect(result).toBe('Login success');
 
     expect(httpClient.defaults.headers.Authorization).toBe(
-      'Bearer eyJJRFVzZXIiOi03ODI3MzMyMTM3OTE',
+      'Bearer fake-token-123',
     );
   });
 
