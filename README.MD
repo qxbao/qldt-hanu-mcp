@@ -32,7 +32,11 @@ Edit `~/.gemini/settings.json` or your project's `.gemini/settings.json`:
   "mcpServers": {
     "qldt-hanu-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"]
+      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"],
+      "env": {
+        "QLDT_USERNAME": "your_student_id",
+        "QLDT_PASSWORD": "your_password"
+      }
     }
   }
 }
@@ -50,7 +54,11 @@ Edit `claude_desktop_config.json`:
   "mcpServers": {
     "qldt-hanu-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"]
+      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"],
+      "env": {
+        "QLDT_USERNAME": "your_student_id",
+        "QLDT_PASSWORD": "your_password"
+      }
     }
   }
 }
@@ -68,7 +76,11 @@ Edit `.vscode/mcp.json` in your workspace:
   "servers": {
     "qldt-hanu-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"]
+      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"],
+      "env": {
+        "QLDT_USERNAME": "your_student_id",
+        "QLDT_PASSWORD": "your_password"
+      }
     }
   }
 }
@@ -86,7 +98,11 @@ Edit `.cursor/mcp.json`:
   "mcpServers": {
     "qldt-hanu-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"]
+      "args": ["/absolute/path/to/qldt-hanu-mcp/build/src/index.js"],
+      "env": {
+        "QLDT_USERNAME": "your_student_id",
+        "QLDT_PASSWORD": "your_password"
+      }
     }
   }
 }
@@ -94,13 +110,13 @@ Edit `.cursor/mcp.json`:
 
 </details>
 
-> **Note**: Replace `/absolute/path/to/qldt-hanu-mcp` with the actual path where you cloned the repository.
+> **Note**: Replace `/absolute/path/to/qldt-hanu-mcp` with the actual path where you cloned the repository. The `env` block is optional — see [Authentication](#-authentication) for details.
 
 ### 3. Start Using
 
 Ask your AI assistant to:
 
-- **"Login to QLDT for me with: xxxxxxx - [PASSWORD]"**
+- **"Login to QLDT for me with: xxxxxxx - [PASSWORD]"** *(not needed if env vars are set)*
 - **"Check my info on QLDT"**
 - **"Check token readiness"**
 - **"What is my schedule for semester 1 of 2023?"**
@@ -122,12 +138,12 @@ Ask your AI assistant to:
 
 #### `login`
 
-Authenticate with the QLDT system.
+Authenticate with the QLDT system. Both parameters are **optional** if `QLDT_USERNAME` and `QLDT_PASSWORD` environment variables are configured — the server will fall back to them automatically.
 
 | Parameter | Type | Required | Description |
 |-----------|------|:---:|-------------|
-| `username` | `string` | ✅ | Student ID |
-| `password` | `string` | ✅ | Account password |
+| `username` | `string` | ⚠️ | Student ID. Falls back to `QLDT_USERNAME` env var if omitted. |
+| `password` | `string` | ⚠️ | Account password. Falls back to `QLDT_PASSWORD` env var if omitted. |
 
 #### `get_session_status`
 
@@ -198,11 +214,27 @@ pnpm run fix
 | Testing | Vitest |
 | Linting | GTS (Google TypeScript Style) |
 
+## 🔐 Authentication
+
+The server supports two authentication modes:
+
+**Mode 1 — Manual (via AI prompt):** Ask your AI assistant to log in. Credentials are only used for the login request and are never stored.
+
+**Mode 2 — Auto-login (via Environment Variables):** Set `QLDT_USERNAME` and `QLDT_PASSWORD` in the MCP server's `env` config block. The server will automatically authenticate on startup without any user prompt.
+
+### Session Persistence
+
+After a successful login, the access token is saved to a local `.session.json` file in the server's working directory. On the next startup, the server loads from this file automatically — **avoiding the need to log in again after an IDE restart**, as long as the token has not expired.
+
+- **Session TTL:** 1 hour from last successful login.
+- **Storage:** Local `.session.json` file (add to `.gitignore` if needed).
+
 ## 🔒 Security
 
 - Credentials are transmitted directly to QLDT's official authentication endpoint over HTTPS.
-- Access tokens are stored **in-memory only** and never persisted to disk.
+- Access tokens are cached to `.session.json` for up to **1 hour**, then invalidated automatically.
 - The server uses a randomized User-Agent for each session.
+- Plaintext credentials are **never** stored — only the resulting access token is persisted.
 
 ## 📋 Roadmap
 
