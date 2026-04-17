@@ -4,7 +4,8 @@
   "description": "Model Context Protocol (MCP) server for QLDT HANU — the student management system of Hanoi University (qldt.hanu.edu.vn). Enables AI assistants to authenticate and retrieve student information directly from the university portal.",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
