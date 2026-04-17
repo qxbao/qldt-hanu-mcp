@@ -9,8 +9,8 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "prepare": "npm.cmd run compile",
-    "posttest": "npm.cmd run lint"
+    "prepare": "pnpm compile",
+    "posttest": "pnpm lint"
   },
   "keywords": [],
   "author": "qxbao",
