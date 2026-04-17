@@ -5,10 +5,7 @@ import {LOGIN_API} from '../../const/api';
 
 export class AuthService {
   private static saveSession(token: string) {
-    const data = {
-      token,
-      updatedAt: Date.now(),
-    };
+    const data = {token, updatedAt: Date.now()};
 
     fs.writeFileSync(SESSION_FILE, JSON.stringify(data));
   }
@@ -18,7 +15,7 @@ export class AuthService {
       const data = JSON.parse(fs.readFileSync(SESSION_FILE, 'utf-8'));
       const isExpired = Date.now() - data.updatedAt > ACCESS_TOKEN_CACHE_TTL;
       if (!isExpired) {
-        (httpClient.defaults.headers as any).common['Authorization'] =
+        httpClient.defaults.headers.common['Authorization'] =
           `Bearer ${data.token}`;
         return true;
       }
@@ -27,7 +24,7 @@ export class AuthService {
   }
 
   static isAuthenticated(): boolean {
-    return !!(httpClient.defaults.headers as any).common['Authorization'];
+    return !!httpClient.defaults.headers.common['Authorization'];
   }
 
   static genCode(username: string, password: string): string {
@@ -75,7 +72,8 @@ export class AuthService {
       Buffer.from(accessTokenRaw!, 'base64').toString('utf-8'),
     );
 
-    (httpClient.defaults.headers as any).common['Authorization'] = `Bearer ${decodedUser.access_token}`;
+    httpClient.defaults.headers.common['Authorization'] =
+      `Bearer ${decodedUser.access_token}`;
     this.saveSession(decodedUser.access_token);
     return 'Login success';
   }
